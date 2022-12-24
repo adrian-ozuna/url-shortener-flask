@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="row gy-4">
+    {% if user.links %}
+    {% for link in user.links %}
+    <div class="col col-lg-4 col-md-5 col-12">
+        <div class="card p-3 bg-light h-100">
+            <div class="card-body">
+                <div class="card-title mb-1">
+                    <h5>{{link.name}}</h5>
+                </div>
+                <div class="card-text mb-1">
+                    <p>{{link.description or "No description"}}</p>
+                </div>
+                <div class="mt-3">
+                    <a href="{{link.link}}" class="btn btn-primary">Open</a>
+                    <button id="copy-btn" class="btn btn-dark" value="{{link.randomString}}">Share</button>
+                    <a class="btn btn-warning">Edit</a>
+                    <a href="/delete/{{link.randomString}}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="text-muted text-center">You haven't created any links</p>
+    {% endif %}
+</div>
+
+<script>
+    const copyButton = document.getElementById("copy-btn")
+    copyButton.addEventListener("click", () => {
+        shareLink = `localhost:5000/${copyButton.value}`
+        navigator.clipboard.writeText(shareLink).then(() => {
+            alert("Adress copied to clipboard")
+        })
+    })
+</script>
+
+{% endblock %}

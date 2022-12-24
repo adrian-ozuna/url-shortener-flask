@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3 mx-auto col-lg-6 col-12">
+    <form method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+            <label for="passwordConfirm" class="form-label">Confirm password</label>
+            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
+        </div>
+        <a href="/login">
+            <p>Already have an account.</p>
+        </a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
